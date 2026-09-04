@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Agile Artifact Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧩 Agile Artifact Generator</h1>
+      <p class="subtitle">
+        Paste a feature / ADO requirement and let AI generate user stories,
+        tasks, acceptance criteria, and test scenarios.
+      </p>
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+          {% for m in messages %}<p>{{ m }}</p>{% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% if error %}
+      <div class="error">⚠️ {{ error }}</div>
+    {% endif %}
+
+    <form method="POST" class="form">
+      <label for="requirement">Feature / ADO Requirement</label>
+      <textarea
+        id="requirement"
+        name="requirement"
+        rows="6"
+        placeholder="e.g. As part of the checkout flow, add support for Apple Pay so mobile users can complete purchases without entering card details."
+        required
+      >{{ requirement_value }}</textarea>
+
+      <label for="context">Additional Context (optional)</label>
+      <textarea
+        id="context"
+        name="context"
+        rows="3"
+        placeholder="e.g. Must comply with PCI-DSS, target platform is iOS/Android app, existing payment service is Stripe."
+      >{{ context_value }}</textarea>
+
+      <label for="model">Model</label>
+      <input type="text" id="model" disabled name="model" value="{{ default_model }}" />
+
+      <button type="submit">Generate Artifacts</button>
+    </form>
+
+    {% if artifacts_md %}
+      <section class="results">
+        <div class="results-header">
+          <h2>Generated Artifacts</h2>
+          <div class="download-links">
+            <a href="{{ url_for('download', fmt='markdown') }}">⬇ Markdown</a>
+            <a href="{{ url_for('download', fmt='json') }}">⬇ JSON</a>
+            <a href="{{ url_for('download', fmt='csv') }}">⬇ CSV (ADO import)</a>
+          </div>
+        </div>
+        <pre class="markdown-output">{{ artifacts_md }}</pre>
+      </section>
+    {% endif %}
+
+    <footer>
+      <p>Requires an <code>OPENAI_API_KEY</code> environment variable. See README.md.</p>
+    </footer>
+  </div>
+</body>
+</html>

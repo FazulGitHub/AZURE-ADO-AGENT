@@ -1,0 +1,8 @@
+Feature: Apple Pay Checkout Support
+
+As part of our mobile checkout flow, we need to add Apple Pay as a payment
+option so that iOS users can complete a purchase without manually entering
+card details. The feature should appear as a button on the payment selection
+screen, integrate with our existing Stripe payment gateway, handle
+success/failure/timeout responses gracefully, and be feature-flagged so it
+can be rolled out gradually by region.
