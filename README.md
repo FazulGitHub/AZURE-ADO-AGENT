@@ -31,9 +31,8 @@ cp .env.example .env
 ```
 
 You need a Groq API key — get one free at https://console.groq.com/keys.
-The app defaults to the `llama-3.3-70b-versatile` model; change `GROQ_MODEL`
-in `.env` or via the UI/CLI `--model` flag to use a different one (e.g.
-`llama-3.1-8b-instant` for faster/cheaper, or `openai/gpt-oss-120b`). See
+The app defaults to the `openai/gpt-oss-120b` model; change `GROQ_MODEL`
+in `.env` . See
 https://console.groq.com/docs/models for the current model list.
 
 ## 2. Run the web app
