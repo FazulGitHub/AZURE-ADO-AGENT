@@ -39,7 +39,7 @@ GROQ_BASE_URL = os.environ.get("GROQ_BASE_URL", "https://api.groq.com/openai/v1"
 # Other options at the time of writing: "llama-3.1-8b-instant" (faster/cheaper),
 # "openai/gpt-oss-120b", "qwen3-32b". Check https://console.groq.com/docs/models
 # for the current list.
-DEFAULT_MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
+DEFAULT_MODEL = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b")
 
 # ---------------------------------------------------------------------------
 # JSON schema we ask the model to follow. Keeping this in one place makes it
